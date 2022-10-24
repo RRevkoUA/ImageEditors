@@ -8,7 +8,7 @@ struct Editor init(struct Editor ed){
 };
 
 struct Editor print(struct Editor ed){
-    printf("Editor %s, with prod %1.2f, have %d images in %d time\n", ed.name, ed.productivity, ed.img, ed.timer);
+    printf("Editor %s, with prod %1.2f, have %d images in %d minutes\n", ed.name, ed.productivity, ed.img, ed.timer);
 };
 
 struct Editor init_all(struct Editor *ed, int editorsCount){

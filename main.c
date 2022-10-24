@@ -5,7 +5,7 @@
 #define IMG_COUNT 1000 // Image count
 
 double prod_summing(struct Editor *); // Summing a productivity
-void proccesing(struct Editor* );     // Main proccesing
+void proccesing(struct Editor *);	  // Main proccesing
 
 int main(void)
 {
@@ -13,7 +13,7 @@ int main(void)
 								   {"Clacrk", 1.0 / 2.0},
 								   {"John", 1.0 / 3.0},
 								   {"Allah", 1.0 / 4.0}};
-								   //Name, Productivity (1/img count per minute)
+	// Name, Productivity (1/img count per minute)
 
 	init_all(edit, EDITORS);
 	proccesing(edit);
@@ -30,8 +30,8 @@ double prod_summing(struct Editor *ed)
 	return sum;
 }
 
-void proccesing(struct Editor* ed){
-	
+void proccesing(struct Editor *ed)
+{
 	double full_time = IMG_COUNT / prod_summing(ed); // Full time for editing all photos
 	double images = IMG_COUNT;
 	short n = 0;
@@ -46,5 +46,5 @@ void proccesing(struct Editor* ed){
 		}
 		else
 			n++;
-	}	
+	}
 }
