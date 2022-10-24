@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "editor/Editor.c"
+#include "editor/editor.c"
 
 #define EDITORS 3	   // Editors count
 #define IMG_COUNT 1000 // Image count
@@ -15,9 +15,9 @@ int main(void)
 								   {"Allah", 1.0 / 4.0}};
 	// Name, Productivity (1/img count per minute)
 
-	init_all(edit, EDITORS);
+	initAll(edit, EDITORS);
 	proccesing(edit);
-	print_all(edit, EDITORS);
+	printAll(edit, EDITORS);
 }
 
 double prod_summing(struct Editor *ed)
