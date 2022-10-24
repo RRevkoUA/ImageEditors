@@ -1,11 +1,11 @@
 struct Editor
 {
-    int id;
     char *name;
     double productivity;
+    int img;
+    int timer;
 };
 
-
-struct Editor set_Editor(int,char*,double);
+struct Editor init();
 
 
