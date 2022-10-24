@@ -1,4 +1,0 @@
-struct Images{
-    int id;
-};
-

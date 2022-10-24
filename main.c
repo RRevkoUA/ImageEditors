@@ -1,46 +1,23 @@
 #include <stdio.h>
 #include "editor/Editor.c"
-#include "photobag/Images.c"
 
-#define EDITORS 3
-#define IMG_COUNT 1000
+#define EDITORS 3	   // Editors count
+#define IMG_COUNT 1000 // Image count
 
-double prod_summing(struct Editor *); // summing a productivity
-void img_init(struct Images *);		  // initilization of images (giving id for all)
+double prod_summing(struct Editor *); // Summing a productivity
+void proccesing(struct Editor* );     // Main proccesing
 
 int main(void)
 {
-	struct Editor edit[EDITORS] = {
-		{"Clacrk", 1.0 / 2.0, 0, 0},
-		{"John", 1.0 / 3.0, 0, 0},
-		{"Allah", 1.0 / 4.0, 0, 0}};
+	struct Editor edit[EDITORS] = {// Editors init
+								   {"Clacrk", 1.0 / 2.0},
+								   {"John", 1.0 / 3.0},
+								   {"Allah", 1.0 / 4.0}};
+								   //Name, Productivity (1/img count per minute)
 
-	double full_time = IMG_COUNT / prod_summing(edit); // Full time for editing all photos
-
-	// for (short i = 0; i < EDITORS; i++)
-	// 	*(edit + i) = init();
-
-	struct Images img[IMG_COUNT];
-	img_init(img);
-
-	double images = IMG_COUNT;
-	short n = 0;
-	while (images > 0)
-	{
-		if (edit[n].timer < (int)full_time)
-		{
-			edit[n].timer = edit[n].timer + (1.0/edit[n].productivity);
-			images--;
-			edit[n].img++;
-		}
-		else
-			n++;
-	}
-
-	for (short i = 0; i < EDITORS; i++)
-	{
-		printf("Editor %s, with prod %1.2f, have %d images\n", edit[i].name, edit[i].productivity, edit[i].img);
-	}
+	init_all(edit, EDITORS);
+	proccesing(edit);
+	print_all(edit, EDITORS);
 }
 
 double prod_summing(struct Editor *ed)
@@ -53,10 +30,21 @@ double prod_summing(struct Editor *ed)
 	return sum;
 }
 
-void img_init(struct Images *img)
-{
-	for (short i = 1; i <= IMG_COUNT; i++)
+void proccesing(struct Editor* ed){
+	
+	double full_time = IMG_COUNT / prod_summing(ed); // Full time for editing all photos
+	double images = IMG_COUNT;
+	short n = 0;
+
+	while (images > 0)
 	{
-		img->id = i;
-	}
+		if (ed[n].timer < (int)full_time)
+		{
+			ed[n].timer = ed[n].timer + (1.0 / ed[n].productivity);
+			images--;
+			ed[n].img++;
+		}
+		else
+			n++;
+	}	
 }
